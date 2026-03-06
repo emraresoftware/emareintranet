@@ -1,0 +1,22 @@
+{
+  "slug": "Emareintranet",
+  "name": "Emare Intranet",
+  "github_repo": "emraresoftware/emareintranet",
+  "branch": "main",
+  "dc": "dc1",
+  "server_host": "185.189.54.104",
+  "server_ssh_port": 22,
+  "remote_path": "/opt/emareintranet",
+  "stack": "python-gunicorn",
+  "port": 8102,
+  "domain": "intranet.emarecloud.tr",
+  "deploy_commands": [
+    "cd /opt/emareintranet",
+    "git pull origin main",
+    "source venv/bin/activate && pip install -r requirements.txt -q",
+    "sudo systemctl restart Emareintranet"
+  ],
+  "restart_command": "systemctl status Emareintranet --no-pager",
+  "auto_deploy_on_push": true,
+  "health_check_url": "https://intranet.emarecloud.tr/api/health"
+}
